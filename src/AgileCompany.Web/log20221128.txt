@@ -303,3 +303,142 @@ System.ArgumentException: Format of the initialization string does not conform t
 2022-11-28 21:02:19.290 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12002 application/javascript;+charset=utf-8 2.9002ms
 2022-11-28 21:02:19.290 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
 2022-11-28 21:02:19.313 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 22.9497ms
+2022-11-28 21:07:26.456 -04:00 [INF] Registered 5 endpoints in 332 milliseconds.
+2022-11-28 21:07:26.535 -04:00 [INF] User profile is available. Using 'C:\Users\jeans\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-11-28 21:07:31.524 -04:00 [INF] Registered 5 endpoints in 356 milliseconds.
+2022-11-28 21:07:31.601 -04:00 [INF] User profile is available. Using 'C:\Users\jeans\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-11-28 21:07:46.758 -04:00 [ERR] An error occurred seeding the DB. A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SNI_PN11, error: 50 - Local Database Runtime error occurred. Cannot create an automatic instance. See the Windows Application event log for error details.
+)
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SNI_PN11, error: 50 - Local Database Runtime error occurred. Cannot create an automatic instance. See the Windows Application event log for error details.
+)
+ ---> System.ComponentModel.Win32Exception (0x89C50118): Unknown error (0x89c50118)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass18_0.<Exists>b__0(DateTime giveUp)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.<>c__DisplayClass12_0`2.<Execute>b__0(DbContext _, TState s)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, TState state, Func`2 operation, Func`2 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.Exists(Boolean retryOnNotExists)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.Exists()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreated()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated()
+   at Program.<Main>$(String[] args) in D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web\Program.cs:line 96
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:-1983577832,State:0,Class:20
+2022-11-28 21:07:46.817 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-11-28 21:07:46.817 -04:00 [INF] Hosting environment: Development
+2022-11-28 21:07:46.817 -04:00 [INF] Content root path: D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web
+2022-11-28 21:07:46.828 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-11-28 21:07:46.828 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-11-28 21:07:46.874 -04:00 [WRN] Failed to determine the https port for redirect.
+2022-11-28 21:07:46.896 -04:00 [INF] Executing endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 21:07:46.896 -04:00 [INF] Executing endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 21:07:46.906 -04:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller AgileCompany.Web.Controllers.HomeController (AgileCompany.Web).
+2022-11-28 21:07:46.906 -04:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller AgileCompany.Web.Controllers.HomeController (AgileCompany.Web).
+2022-11-28 21:07:46.913 -04:00 [INF] Executing ViewResult, running view Index.
+2022-11-28 21:07:46.913 -04:00 [INF] Executing ViewResult, running view Index.
+2022-11-28 21:07:47.006 -04:00 [INF] Executed ViewResult - view Index executed in 94.9482ms.
+2022-11-28 21:07:47.006 -04:00 [INF] Executed ViewResult - view Index executed in 94.9465ms.
+2022-11-28 21:07:47.009 -04:00 [INF] Executed action AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web) in 103.2008ms
+2022-11-28 21:07:47.009 -04:00 [INF] Executed action AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web) in 103.2097ms
+2022-11-28 21:07:47.010 -04:00 [INF] Executed endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 21:07:47.010 -04:00 [INF] Executed endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 21:07:47.031 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 204.1416ms
+2022-11-28 21:07:47.033 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 206.3168ms
+2022-11-28 21:07:47.062 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2022-11-28 21:07:47.066 -04:00 [INF] The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+2022-11-28 21:07:47.067 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 304 - text/css 5.3628ms
+2022-11-28 21:07:47.068 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2022-11-28 21:07:47.068 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AgileCompany.Web.styles.css?v=gvpUe3L19y5P08tWIQiv9g6mgjsWQo4U4yzsOUtjhOA - -
+2022-11-28 21:07:47.069 -04:00 [INF] The file /css/site.css was not modified
+2022-11-28 21:07:47.069 -04:00 [INF] The file /AgileCompany.Web.styles.css was not modified
+2022-11-28 21:07:47.069 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 304 - text/css 1.4832ms
+2022-11-28 21:07:47.069 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AgileCompany.Web.styles.css?v=gvpUe3L19y5P08tWIQiv9g6mgjsWQo4U4yzsOUtjhOA - - - 304 - text/css 1.3360ms
+2022-11-28 21:07:47.085 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2022-11-28 21:07:47.087 -04:00 [INF] The file /lib/jquery/dist/jquery.min.js was not modified
+2022-11-28 21:07:47.087 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 304 - text/javascript 1.8699ms
+2022-11-28 21:07:47.089 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-11-28 21:07:47.089 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2022-11-28 21:07:47.089 -04:00 [INF] The file /js/site.js was not modified
+2022-11-28 21:07:47.089 -04:00 [INF] The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+2022-11-28 21:07:47.089 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 304 - text/javascript 0.5502ms
+2022-11-28 21:07:47.089 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 304 - text/javascript 0.5401ms
+2022-11-28 21:07:47.090 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-11-28 21:07:47.092 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12002 application/javascript;+charset=utf-8 2.0995ms
+2022-11-28 21:07:47.094 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-11-28 21:07:47.118 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 23.5242ms
+2022-11-28 21:07:47.153 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/favicon.ico - -
+2022-11-28 21:07:47.153 -04:00 [INF] The file /favicon.ico was not modified
+2022-11-28 21:07:47.153 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/favicon.ico - - - 304 - image/x-icon 0.7713ms
+2022-11-28 21:14:41.564 -04:00 [INF] Executed DbCommand (163ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [AgileCompanyDB];
+2022-11-28 21:14:41.617 -04:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AgileCompanyDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2022-11-28 21:14:41.631 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-11-28 21:14:41.674 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2022-11-28 21:14:41.675 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-11-28 21:14:41.686 -04:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-11-28 21:14:41.689 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-11-28 21:14:41.699 -04:00 [INF] Applying migration '20221129005542_InitialMigrationName'.
+2022-11-28 21:14:41.735 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Contributors] (
+    [Id] INTEGER NOT NULL,
+    [Name] TEXT NOT NULL,
+    CONSTRAINT [PK_Contributors] PRIMARY KEY ([Id])
+);
+2022-11-28 21:14:41.737 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Projects] (
+    [Id] INTEGER NOT NULL,
+    [Name] TEXT NOT NULL,
+    [Priority] INTEGER NOT NULL,
+    CONSTRAINT [PK_Projects] PRIMARY KEY ([Id])
+);
+2022-11-28 21:14:41.738 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ToDoItems] (
+    [Id] INTEGER NOT NULL,
+    [Title] TEXT NOT NULL,
+    [Description] TEXT NOT NULL,
+    [ContributorId] INTEGER NULL,
+    [IsDone] INTEGER NOT NULL,
+    [ProjectId] INTEGER NULL,
+    CONSTRAINT [PK_ToDoItems] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_ToDoItems_Projects_ProjectId] FOREIGN KEY ([ProjectId]) REFERENCES [Projects] ([Id])
+);
+2022-11-28 21:14:41.739 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ToDoItems_ProjectId] ON [ToDoItems] ([ProjectId]);
+2022-11-28 21:14:41.741 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20221129005542_InitialMigrationName', N'7.0.0');
