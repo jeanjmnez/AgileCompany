@@ -1,0 +1,305 @@
+2022-11-28 20:57:18.181 -04:00 [INF] Registered 5 endpoints in 362 milliseconds.
+2022-11-28 20:57:18.350 -04:00 [INF] User profile is available. Using 'C:\Users\jeans\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-11-28 20:57:18.846 -04:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2022-11-28 20:57:18.921 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL
+);
+2022-11-28 20:57:18.921 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Projects" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Projects" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Priority" INTEGER NOT NULL
+);
+2022-11-28 20:57:18.921 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "ToDoItems" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_ToDoItems" PRIMARY KEY AUTOINCREMENT,
+    "Title" TEXT NOT NULL,
+    "Description" TEXT NOT NULL,
+    "ContributorId" INTEGER NULL,
+    "IsDone" INTEGER NOT NULL,
+    "ProjectId" INTEGER NULL,
+    CONSTRAINT "FK_ToDoItems_Projects_ProjectId" FOREIGN KEY ("ProjectId") REFERENCES "Projects" ("Id")
+);
+2022-11-28 20:57:18.921 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_ToDoItems_ProjectId" ON "ToDoItems" ("ProjectId");
+2022-11-28 20:57:19.059 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2022-11-28 20:57:19.093 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+2022-11-28 20:57:19.096 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."ContributorId", "t"."Description", "t"."IsDone", "t"."ProjectId", "t"."Title"
+FROM "ToDoItems" AS "t"
+2022-11-28 20:57:19.098 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+2022-11-28 20:57:19.216 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name")
+VALUES (@p0)
+RETURNING "Id";
+2022-11-28 20:57:19.229 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name")
+VALUES (@p0)
+RETURNING "Id";
+2022-11-28 20:57:19.288 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 12), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Projects" ("Name", "Priority")
+VALUES (@p0, @p1)
+RETURNING "Id";
+2022-11-28 20:57:19.293 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = Int32), @p3='?' (Size = 31), @p4='?' (DbType = Boolean), @p5='?' (DbType = Int32), @p6='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p2, @p3, @p4, @p5, @p6)
+RETURNING "Id";
+2022-11-28 20:57:19.293 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 81), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p4='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2022-11-28 20:57:19.293 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 59), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p4='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2022-11-28 20:57:19.385 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-11-28 20:57:19.385 -04:00 [INF] Hosting environment: Development
+2022-11-28 20:57:19.385 -04:00 [INF] Content root path: D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web
+2022-11-28 20:57:19.401 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-11-28 20:57:19.467 -04:00 [WRN] Failed to determine the https port for redirect.
+2022-11-28 20:57:19.487 -04:00 [INF] Executing endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 20:57:19.494 -04:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller AgileCompany.Web.Controllers.HomeController (AgileCompany.Web).
+2022-11-28 20:57:19.501 -04:00 [INF] Executing ViewResult, running view Index.
+2022-11-28 20:57:19.648 -04:00 [INF] Executed ViewResult - view Index executed in 149.1042ms.
+2022-11-28 20:57:19.650 -04:00 [INF] Executed action AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web) in 155.978ms
+2022-11-28 20:57:19.651 -04:00 [INF] Executed endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 20:57:19.711 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 311.3519ms
+2022-11-28 20:57:19.730 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2022-11-28 20:57:19.737 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2022-11-28 20:57:19.738 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AgileCompany.Web.styles.css?v=gvpUe3L19y5P08tWIQiv9g6mgjsWQo4U4yzsOUtjhOA - -
+2022-11-28 20:57:19.740 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2022-11-28 20:57:19.740 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-11-28 20:57:19.741 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2022-11-28 20:57:19.745 -04:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web\wwwroot\js\site.js'
+2022-11-28 20:57:19.746 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 text/javascript 5.1322ms
+2022-11-28 20:57:19.746 -04:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web\wwwroot\css\site.css'
+2022-11-28 20:57:19.746 -04:00 [INF] Sending file. Request path: '/AgileCompany.Web.styles.css'. Physical path: 'D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web\obj\Debug\net7.0\scopedcss\bundle\AgileCompany.Web.styles.css'
+2022-11-28 20:57:19.746 -04:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2022-11-28 20:57:19.746 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AgileCompany.Web.styles.css?v=gvpUe3L19y5P08tWIQiv9g6mgjsWQo4U4yzsOUtjhOA - - - 200 1133 text/css 8.6795ms
+2022-11-28 20:57:19.746 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 200 194 text/css 9.3243ms
+2022-11-28 20:57:19.747 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-11-28 20:57:19.749 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12002 application/javascript;+charset=utf-8 2.1471ms
+2022-11-28 20:57:19.750 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 200 162726 text/css 20.0647ms
+2022-11-28 20:57:19.760 -04:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2022-11-28 20:57:19.762 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 200 78474 text/javascript 21.2756ms
+2022-11-28 20:57:19.769 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-11-28 20:57:19.780 -04:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web\wwwroot\lib\jquery\dist\jquery.min.js'
+2022-11-28 20:57:19.782 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 200 89478 text/javascript 41.2140ms
+2022-11-28 20:57:19.814 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 45.2521ms
+2022-11-28 20:57:19.917 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/favicon.ico - -
+2022-11-28 20:57:19.923 -04:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: 'D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web\wwwroot\favicon.ico'
+2022-11-28 20:57:19.923 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/favicon.ico - - - 200 5430 image/x-icon 6.5871ms
+2022-11-28 20:57:53.246 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ProjectDetails/1 - -
+2022-11-28 20:57:53.248 -04:00 [INF] Executing endpoint '/ProjectDetails/Index'
+2022-11-28 20:57:53.259 -04:00 [INF] Route matched with {page = "/ProjectDetails/Index", action = "", controller = ""}. Executing page /ProjectDetails/Index
+2022-11-28 20:57:53.271 -04:00 [INF] Executing handler method AgileCompany.Web.Pages.ProjectDetails.IndexModel.OnGetAsync - ModelState is "Valid"
+2022-11-28 20:57:53.394 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Name", "t"."Priority", "t0"."Id", "t0"."ContributorId", "t0"."Description", "t0"."IsDone", "t0"."ProjectId", "t0"."Title"
+FROM (
+    SELECT "p"."Id", "p"."Name", "p"."Priority"
+    FROM "Projects" AS "p"
+    WHERE "p"."Id" = @__projectId_0
+    LIMIT 1
+) AS "t"
+LEFT JOIN "ToDoItems" AS "t0" ON "t"."Id" = "t0"."ProjectId"
+ORDER BY "t"."Id"
+2022-11-28 20:57:53.404 -04:00 [INF] Executed handler method OnGetAsync, returned result .
+2022-11-28 20:57:53.406 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2022-11-28 20:57:53.406 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-11-28 20:57:53.415 -04:00 [INF] Executed page /ProjectDetails/Index in 155.6155ms
+2022-11-28 20:57:53.415 -04:00 [INF] Executed endpoint '/ProjectDetails/Index'
+2022-11-28 20:57:53.419 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ProjectDetails/1 - - - 200 - text/html;+charset=utf-8 172.9304ms
+2022-11-28 20:57:53.450 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AgileCompany.Web.styles.css?v=gvpUe3L19y5P08tWIQiv9g6mgjsWQo4U4yzsOUtjhOA - -
+2022-11-28 20:57:53.450 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-11-28 20:57:53.451 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12002 application/javascript;+charset=utf-8 0.7454ms
+2022-11-28 20:57:53.452 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-11-28 20:57:53.459 -04:00 [INF] The file /AgileCompany.Web.styles.css was not modified
+2022-11-28 20:57:53.460 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AgileCompany.Web.styles.css?v=gvpUe3L19y5P08tWIQiv9g6mgjsWQo4U4yzsOUtjhOA - - - 304 - text/css 9.4946ms
+2022-11-28 20:57:53.472 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 20.0604ms
+2022-11-28 20:57:57.573 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-11-28 20:57:57.574 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12002 application/javascript;+charset=utf-8 1.0214ms
+2022-11-28 20:58:02.182 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-11-28 20:58:02.183 -04:00 [INF] Executing endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 20:58:02.183 -04:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller AgileCompany.Web.Controllers.HomeController (AgileCompany.Web).
+2022-11-28 20:58:02.184 -04:00 [INF] Executing ViewResult, running view Index.
+2022-11-28 20:58:02.187 -04:00 [INF] Executed ViewResult - view Index executed in 3.3283ms.
+2022-11-28 20:58:02.187 -04:00 [INF] Executed action AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web) in 3.9224ms
+2022-11-28 20:58:02.187 -04:00 [INF] Executed endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 20:58:02.189 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 7.4499ms
+2022-11-28 20:58:02.219 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2022-11-28 20:58:02.219 -04:00 [INF] The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+2022-11-28 20:58:02.219 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 304 - text/css 0.8931ms
+2022-11-28 20:58:02.222 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2022-11-28 20:58:02.223 -04:00 [INF] The file /css/site.css was not modified
+2022-11-28 20:58:02.223 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 304 - text/css 0.9262ms
+2022-11-28 20:58:02.223 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-11-28 20:58:02.223 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2022-11-28 20:58:02.223 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2022-11-28 20:58:02.224 -04:00 [INF] The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+2022-11-28 20:58:02.224 -04:00 [INF] The file /lib/jquery/dist/jquery.min.js was not modified
+2022-11-28 20:58:02.224 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 304 - text/javascript 0.7110ms
+2022-11-28 20:58:02.224 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 304 - text/javascript 0.7387ms
+2022-11-28 20:58:02.224 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-11-28 20:58:02.224 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12002 application/javascript;+charset=utf-8 0.8611ms
+2022-11-28 20:58:02.224 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-11-28 20:58:02.224 -04:00 [INF] The file /js/site.js was not modified
+2022-11-28 20:58:02.225 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 304 - text/javascript 0.4930ms
+2022-11-28 20:58:02.243 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 19.0560ms
+2022-11-28 20:59:00.353 -04:00 [INF] Registered 5 endpoints in 348 milliseconds.
+2022-11-28 20:59:00.439 -04:00 [INF] User profile is available. Using 'C:\Users\jeans\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-11-28 20:59:00.892 -04:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2022-11-28 20:59:01.011 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2022-11-28 20:59:01.061 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-11-28 20:59:01.061 -04:00 [INF] Hosting environment: Development
+2022-11-28 20:59:01.061 -04:00 [INF] Content root path: D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web
+2022-11-28 20:59:01.072 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-11-28 20:59:01.115 -04:00 [WRN] Failed to determine the https port for redirect.
+2022-11-28 20:59:01.131 -04:00 [INF] Executing endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 20:59:01.136 -04:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller AgileCompany.Web.Controllers.HomeController (AgileCompany.Web).
+2022-11-28 20:59:01.141 -04:00 [INF] Executing ViewResult, running view Index.
+2022-11-28 20:59:01.224 -04:00 [INF] Executed ViewResult - view Index executed in 84.4187ms.
+2022-11-28 20:59:01.227 -04:00 [INF] Executed action AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web) in 90.4787ms
+2022-11-28 20:59:01.227 -04:00 [INF] Executed endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 20:59:01.250 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 179.1960ms
+2022-11-28 20:59:01.271 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2022-11-28 20:59:01.277 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AgileCompany.Web.styles.css?v=gvpUe3L19y5P08tWIQiv9g6mgjsWQo4U4yzsOUtjhOA - -
+2022-11-28 20:59:01.277 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2022-11-28 20:59:01.282 -04:00 [INF] The file /AgileCompany.Web.styles.css was not modified
+2022-11-28 20:59:01.282 -04:00 [INF] The file /css/site.css was not modified
+2022-11-28 20:59:01.282 -04:00 [INF] The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+2022-11-28 20:59:01.284 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 304 - text/css 6.6036ms
+2022-11-28 20:59:01.284 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AgileCompany.Web.styles.css?v=gvpUe3L19y5P08tWIQiv9g6mgjsWQo4U4yzsOUtjhOA - - - 304 - text/css 6.6323ms
+2022-11-28 20:59:01.284 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 304 - text/css 12.7550ms
+2022-11-28 20:59:01.294 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2022-11-28 20:59:01.294 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2022-11-28 20:59:01.294 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-11-28 20:59:01.296 -04:00 [INF] The file /js/site.js was not modified
+2022-11-28 20:59:01.296 -04:00 [INF] The file /lib/jquery/dist/jquery.min.js was not modified
+2022-11-28 20:59:01.296 -04:00 [INF] The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+2022-11-28 20:59:01.296 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 304 - text/javascript 1.9393ms
+2022-11-28 20:59:01.296 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 304 - text/javascript 1.9914ms
+2022-11-28 20:59:01.296 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 304 - text/javascript 2.2251ms
+2022-11-28 20:59:01.300 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-11-28 20:59:01.300 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-11-28 20:59:01.302 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12002 application/javascript;+charset=utf-8 1.9046ms
+2022-11-28 20:59:01.325 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 24.2931ms
+2022-11-28 20:59:01.360 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/favicon.ico - -
+2022-11-28 20:59:01.360 -04:00 [INF] The file /favicon.ico was not modified
+2022-11-28 20:59:01.361 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/favicon.ico - - - 304 - image/x-icon 0.7178ms
+2022-11-28 21:02:07.170 -04:00 [INF] Registered 5 endpoints in 454 milliseconds.
+2022-11-28 21:02:07.249 -04:00 [INF] User profile is available. Using 'C:\Users\jeans\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-11-28 21:02:07.813 -04:00 [ERR] An error occurred seeding the DB. Format of the initialization string does not conform to specification starting at index 0.
+System.ArgumentException: Format of the initialization string does not conform to specification starting at index 0.
+   at Microsoft.Data.Common.DbConnectionOptions.GetKeyValuePair(String connectionString, Int32 currentPosition, StringBuilder buffer, Boolean useOdbcRules, String& keyname, String& keyvalue)
+   at Microsoft.Data.Common.DbConnectionOptions.ParseInternal(Dictionary`2 parsetable, String connectionString, Boolean buildChain, Dictionary`2 synonyms, Boolean firstKey)
+   at Microsoft.Data.Common.DbConnectionOptions..ctor(String connectionString, Dictionary`2 synonyms)
+   at Microsoft.Data.SqlClient.SqlConnectionString..ctor(String connectionString)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnectionOptions(String connectionString, DbConnectionOptions previous)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.GetConnectionPoolGroup(DbConnectionPoolKey key, DbConnectionPoolGroupOptions poolOptions, DbConnectionOptions& userConnectionOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.ConnectionString_Set(DbConnectionPoolKey key)
+   at Microsoft.Data.SqlClient.SqlConnection.set_ConnectionString(String value)
+   at Microsoft.Data.SqlClient.SqlConnection..ctor(String connectionString)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerConnection.CreateDbConnection()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.get_DbConnection()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass18_0.<Exists>b__0(DateTime giveUp)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.<>c__DisplayClass12_0`2.<Execute>b__0(DbContext _, TState s)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, TState state, Func`2 operation, Func`2 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.Exists(Boolean retryOnNotExists)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.Exists()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreated()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated()
+   at Program.<Main>$(String[] args) in D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web\Program.cs:line 96
+2022-11-28 21:02:07.909 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-11-28 21:02:07.909 -04:00 [INF] Hosting environment: Development
+2022-11-28 21:02:07.909 -04:00 [INF] Content root path: D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web
+2022-11-28 21:02:07.920 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-11-28 21:02:07.958 -04:00 [WRN] Failed to determine the https port for redirect.
+2022-11-28 21:02:07.977 -04:00 [INF] Executing endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 21:02:07.982 -04:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller AgileCompany.Web.Controllers.HomeController (AgileCompany.Web).
+2022-11-28 21:02:07.992 -04:00 [INF] Executing ViewResult, running view Index.
+2022-11-28 21:02:08.074 -04:00 [INF] Executed ViewResult - view Index executed in 87.7743ms.
+2022-11-28 21:02:08.077 -04:00 [INF] Executed action AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web) in 94.6793ms
+2022-11-28 21:02:08.077 -04:00 [INF] Executed endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 21:02:08.101 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 181.4123ms
+2022-11-28 21:02:08.128 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2022-11-28 21:02:08.133 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/AgileCompany.Web.styles.css?v=gvpUe3L19y5P08tWIQiv9g6mgjsWQo4U4yzsOUtjhOA - -
+2022-11-28 21:02:08.133 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2022-11-28 21:02:08.140 -04:00 [INF] The file /AgileCompany.Web.styles.css was not modified
+2022-11-28 21:02:08.140 -04:00 [INF] The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+2022-11-28 21:02:08.140 -04:00 [INF] The file /css/site.css was not modified
+2022-11-28 21:02:08.141 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 304 - text/css 13.2496ms
+2022-11-28 21:02:08.141 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 304 - text/css 7.8197ms
+2022-11-28 21:02:08.141 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/AgileCompany.Web.styles.css?v=gvpUe3L19y5P08tWIQiv9g6mgjsWQo4U4yzsOUtjhOA - - - 304 - text/css 7.8195ms
+2022-11-28 21:02:08.153 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2022-11-28 21:02:08.153 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-11-28 21:02:08.153 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2022-11-28 21:02:08.154 -04:00 [INF] The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+2022-11-28 21:02:08.154 -04:00 [INF] The file /js/site.js was not modified
+2022-11-28 21:02:08.154 -04:00 [INF] The file /lib/jquery/dist/jquery.min.js was not modified
+2022-11-28 21:02:08.154 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 304 - text/javascript 1.5617ms
+2022-11-28 21:02:08.154 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 304 - text/javascript 1.5617ms
+2022-11-28 21:02:08.154 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 304 - text/javascript 1.5879ms
+2022-11-28 21:02:08.158 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-11-28 21:02:08.158 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-11-28 21:02:08.160 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12002 application/javascript;+charset=utf-8 1.9755ms
+2022-11-28 21:02:08.181 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 22.5935ms
+2022-11-28 21:02:08.216 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/favicon.ico - -
+2022-11-28 21:02:08.216 -04:00 [INF] The file /favicon.ico was not modified
+2022-11-28 21:02:08.216 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/favicon.ico - - - 304 - image/x-icon 0.7140ms
+2022-11-28 21:02:18.493 -04:00 [INF] Registered 5 endpoints in 342 milliseconds.
+2022-11-28 21:02:18.571 -04:00 [INF] User profile is available. Using 'C:\Users\jeans\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-11-28 21:02:18.988 -04:00 [ERR] An error occurred seeding the DB. Format of the initialization string does not conform to specification starting at index 0.
+System.ArgumentException: Format of the initialization string does not conform to specification starting at index 0.
+   at Microsoft.Data.Common.DbConnectionOptions.GetKeyValuePair(String connectionString, Int32 currentPosition, StringBuilder buffer, Boolean useOdbcRules, String& keyname, String& keyvalue)
+   at Microsoft.Data.Common.DbConnectionOptions.ParseInternal(Dictionary`2 parsetable, String connectionString, Boolean buildChain, Dictionary`2 synonyms, Boolean firstKey)
+   at Microsoft.Data.Common.DbConnectionOptions..ctor(String connectionString, Dictionary`2 synonyms)
+   at Microsoft.Data.SqlClient.SqlConnectionString..ctor(String connectionString)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnectionOptions(String connectionString, DbConnectionOptions previous)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.GetConnectionPoolGroup(DbConnectionPoolKey key, DbConnectionPoolGroupOptions poolOptions, DbConnectionOptions& userConnectionOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.ConnectionString_Set(DbConnectionPoolKey key)
+   at Microsoft.Data.SqlClient.SqlConnection.set_ConnectionString(String value)
+   at Microsoft.Data.SqlClient.SqlConnection..ctor(String connectionString)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerConnection.CreateDbConnection()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.get_DbConnection()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass18_0.<Exists>b__0(DateTime giveUp)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.<>c__DisplayClass12_0`2.<Execute>b__0(DbContext _, TState s)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, TState state, Func`2 operation, Func`2 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.Exists(Boolean retryOnNotExists)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.Exists()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreated()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated()
+   at Program.<Main>$(String[] args) in D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web\Program.cs:line 96
+2022-11-28 21:02:19.038 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-11-28 21:02:19.038 -04:00 [INF] Hosting environment: Development
+2022-11-28 21:02:19.038 -04:00 [INF] Content root path: D:\Source\OrionTek\AgileCompany\src\AgileCompany.Web
+2022-11-28 21:02:19.049 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-11-28 21:02:19.090 -04:00 [WRN] Failed to determine the https port for redirect.
+2022-11-28 21:02:19.110 -04:00 [INF] Executing endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 21:02:19.114 -04:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller AgileCompany.Web.Controllers.HomeController (AgileCompany.Web).
+2022-11-28 21:02:19.125 -04:00 [INF] Executing ViewResult, running view Index.
+2022-11-28 21:02:19.210 -04:00 [INF] Executed ViewResult - view Index executed in 91.2869ms.
+2022-11-28 21:02:19.213 -04:00 [INF] Executed action AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web) in 98.6845ms
+2022-11-28 21:02:19.214 -04:00 [INF] Executed endpoint 'AgileCompany.Web.Controllers.HomeController.Index (AgileCompany.Web)'
+2022-11-28 21:02:19.239 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 190.6799ms
+2022-11-28 21:02:19.287 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-11-28 21:02:19.290 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12002 application/javascript;+charset=utf-8 2.9002ms
+2022-11-28 21:02:19.290 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-11-28 21:02:19.313 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 22.9497ms
